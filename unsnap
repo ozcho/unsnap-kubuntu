@@ -105,7 +105,8 @@ function generate_flatpak_install_script() {
 # Documentation: https://flatpak.org/setup/
 sudo apt update
 sudo apt install -y flatpak
-# sudo apt install gnome-software-plugin-flatpak
+sudo apt install plasma-discover-backend-flatpak
+sudo apt install kde-config-flatpak
 EOT
             ;;
         *)
@@ -188,7 +189,7 @@ function generate_remove_snapd_script() {
     echo "echo Removing snapd" >> "$REMOVESNAPDSCRIPT" 
     case $DISTRO in
         debian|ubuntu|linuxmint|pop|elementary|zorin)
-            echo "sudo apt remove snapd" >> "$REMOVESNAPDSCRIPT"
+            echo "sudo ./Kubuntu_get_rid_of_Snap.sh" >> "$REMOVESNAPDSCRIPT"
             ;;
         *)
             echo "ERROR: Unable to generate snapd removal script. Unimplemented distro." | tee -a "$LOGFILE"
